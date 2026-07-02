@@ -13,13 +13,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'  # Pin Python version
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade "pip==25.0.0"
           pip install -r requirements.txt
-          pip install ruff
-      - name: Run Ruff lint
+      - name: Run linting
         run: ruff check .
 
   test:
@@ -28,9 +27,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
       - name: Install dependencies and test
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade "pip==25.0.0"
           pip install -r requirements.txt
           uvicorn app.main:app --reload
